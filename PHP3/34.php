@@ -7,25 +7,29 @@
 </head>
 <body>
     <?php
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $db = "motoryzacja";
-
+    $host = 'localhost';
+    $user = 'root';
+    $password = '';
+    $database = 'motoryzacja';
+    
     try {
-        $pdo = new PDO("mysql:host=$server;dbname=$db", "$username", "$password");
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $sql = 'SELECT marka, model, pojemnosc FROM Samochody where id=1 AND id=3';
-        $stmt = $pdo -> query($sql);
-        foreach($stmt as $row){
-            echo $row['marka']. '<br>';
-            echo $row['model']. '<br>';
-            echo $row['pojemnosc']. '<br>';
+        $db = new PDO("mysql:host=$host;dbname=$database", $user, $password, 
+              array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+    
+        $query = 'SELECT marka, model, pojemnosc FROM samochody';
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $results = $statement->fetchAll();
+        $statement->closeCursor();      
+    
+        foreach($results as $r){
+                echo "Marka: ".$r['marka'] . '<br />';
+                echo "Model: ".$r['model'] . '<br />';
+                echo "Pojemnosc: ".$r['pojemnosc'] . '<br />';
         }
-        echo "Polaczono";
-    } catch(PDOException $e) {
-        die("Blad");
+    
+    } catch (PDOException $e) {
+        die("Blad przy laczeniu");
     } 
     ?>
 </body>
