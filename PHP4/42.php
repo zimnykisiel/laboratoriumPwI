@@ -18,11 +18,9 @@
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-        $id = 2;
-
-        $sql = 'DELETE FROM studenci WHERE id = :id';
-        $stmt = $pdo -> prepare($sql);
-        $stmt -> execute(['id' => $id]);
+        $sql = 'DELETE FROM studenci WHERE id = 2';
+        $stmt = $pdo -> exec($sql);
+        
         
         echo 'Deleted';
     ?>

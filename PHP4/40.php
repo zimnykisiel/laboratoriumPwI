@@ -18,51 +18,28 @@
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-        $id = 1;
-        $fname = "Kazimierz";
-        $lname = "Kowalski";
-        $email = "kowalski@gmail.com";
-        $id_rok_studiow = 2;
-
-        $id1 = 2;
-        $fname1 = "Jan";
-        $lname1 = "Brzechwa";
-        $email1 = "brzechwa@gmail.com";
-        $id_rok_studiow1 = 4;
-
-        $id2 = 3;
-        $fname2 = "Andrzej";
-        $lname2 = "Nowak";
-        $email2 = "asd@gmail.com";
-        $id_rok_studiow2 = 3;
-
-        $rid = 1;
-        $rnazwa = "UWB";
-        $rkierunek = "Informatyka";
-        $rstopien = 2;
-
-        $rid1 = 2;
-        $rnazwa1 = "UMB";
-        $rkierunek1 = "Pielegniarstwo";
-        $rstopien1 = 1;
-
         $sql = 'INSERT INTO studenci (id, imie, nazwisko, email, id_rok_studiow)
-             values(:id, :imie, :nazwisko, :email, :id_rok_studiow)';
+             values(1, "Kazimierz", "Kowalski", "kowalski@gmail.com", 2)';
+        
+        $sql1 = 'INSERT INTO studenci (id, imie, nazwisko, email, id_rok_studiow)
+             values(2, "Jan", "Brzechwa", "brzechwa@gmail.com", 4)';
+
+        $sql2 = 'INSERT INTO studenci (id, imie, nazwisko, email, id_rok_studiow)
+            values(3, "Andrzej", "Nowak", "asd@gmail.com", 3)';
 
         $rsql = 'INSERT INTO rok (id, nazwa, kierunek, stopien)
-        values(:id, :nazwa, :kierunek, :stopien)';
+        values(1, "UWB", "Informatyka", 2)';
 
-        $stmt = $pdo -> prepare($sql);
-        $stmt -> execute(['id' => $id, 'imie' => $fname, 'nazwisko' => $lname, 'email' => $email, 'id_rok_studiow' => $id_rok_studiow]);
-        $stmt -> execute(['id' => $id1, 'imie' => $fname1, 'nazwisko' => $lname1, 'email' => $email1, 'id_rok_studiow' => $id_rok_studiow1]);
-        $stmt -> execute(['id' => $id2, 'imie' => $fname2, 'nazwisko' => $lname2, 'email' => $email2, 'id_rok_studiow' => $id_rok_studiow2]);
+        $rsql1 = 'INSERT INTO rok (id, nazwa, kierunek, stopien)
+        values(2, "UMB", "Pielegniarstwo", 1)';
 
+        $stmt = $pdo -> exec($sql);
+        $stmt = $pdo -> exec($sql1);
+        $stmt = $pdo -> exec($sql2);
 
-        $stmt = $pdo -> prepare($rsql);
-        $stmt -> execute(['id' => $rid, 'nazwa' => $rnazwa, 'kierunek' => $rkierunek, 'stopien' => $rstopien]);
-        $stmt -> execute(['id' => $rid1, 'nazwa' => $rnazwa1, 'kierunek' => $rkierunek1, 'stopien' => $rstopien1]);
+        $stmt = $pdo -> exec($rsql);
+        $stmt = $pdo -> exec($rsql1);
 
-        
         echo 'Dodano';
     ?>
 </body>
