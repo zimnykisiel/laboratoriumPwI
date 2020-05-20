@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  </head>
+  <body>
+    <input type="text" id="a" />
+    <input type="text" id="b" />
+    <select id="single">
+      <option>dodawanie</option>
+      <option>odejmowanie</option>
+      <option>mnozenie</option>
+      <option>dzielenie</option>
+    </select>
+    <button id="licz">Licz</button><br />
+
+    <output id="wynik"></output>
+
+    <script>
+      function calc() {
+        const a = document.getElementById("a");
+        const b = document.getElementById("b");
+        let result;
+        if ($("#single").val() === "dodawanie") {
+          result = Number(a.value) + Number(b.value);
+        } else if ($("#single").val() === "odejmowanie") {
+          result = Number(a.value) - Number(b.value);
+        } else if ($("#single").val() === "mnozenie") {
+          result = Number(a.value) * Number(b.value);
+        } else {
+          Number(b.value) === 0
+            ? (result = "Nie mozna dzielic przez 0")
+            : (result = Number(a.value) / Number(b.value));
+        }
+        const wynik = document.getElementById("wynik");
+        wynik.innerHTML = result;
+      }
+      const licz = document.getElementById("licz");
+      licz.addEventListener("click", calc);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01</title>
+  </head>
+  <body>
+    <input type="text" id="a" />
+    <input type="text" id="b" />
+    <button id="licz">Licz</button><br />
+    <output id="dodawanie"></output><br />
+    <output id="odejmowanie"></output><br />
+    <output id="mnozenie"></output><br />
+    <output id="dzielenie"></output><br />
+
+    <script type="text/javascript">
+      function calc() {
+        const a = document.getElementById("a");
+        const b = document.getElementById("b");
+        const wyniki = {
+          dodawanie: Number(a.value) + Number(b.value),
+          odejmowanie: Number(a.value) - Number(b.value),
+          mnozenie: Number(a.value) * Number(b.value),
+          dzielenie:
+            Number(b.value) === 0
+              ? "Nie mozna dzielic przez 0"
+              : Number(a.value) / Number(b.value),
+        };
+        const dodawanie = document.getElementById("dodawanie");
+        dodawanie.innerHTML = wyniki.dodawanie;
+
+        const odejmowanie = document.getElementById("odejmowanie");
+        odejmowanie.innerHTML = wyniki.odejmowanie;
+
+        const mnozenie = document.getElementById("mnozenie");
+        mnozenie.innerHTML = wyniki.mnozenie;
+
+        const dzielenie = document.getElementById("dzielenie");
+        dzielenie.innerHTML = wyniki.dzielenie;
+      }
+      const licz = document.getElementById("licz");
+      licz.addEventListener("click", calc);
+    </script>
+  </body>
+</html>
